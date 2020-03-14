@@ -1,4 +1,14 @@
 # CSCE636-project-porta
+## Overview
+
+This repo contains all the code for the CSCE636 project.
+
+I have taken a transfer learning approach to the problem, using a 3D Resnet trained on the Kinetics data set. 
+
+Since the weights have already been highly refined, only a small data set from my domain is required (leaving the house) my training set is [here](https://youtu.be/p8XmS7LYZ8Q). My validation set is [here](https://youtu.be/FYVzdUH5qqc), and a training set is [here](https://youtu.be/aaDWt2fIZXo). As the semester progresses, I will diversify the data set further. The relevant videos need not be processed, they have already been converted to a string of .jpg files, which are contained in this repo. 
+
+![Closing the door (returning)](https://raw.githubusercontent.com/tdgriffith/CSCE636-project-porta/master/videos/jpg_door/train/returning/p8XmS7LYZ8Q_000108_000112/image_00011.jpg)
+
 ## Instructions for use
 I highly recommend a virtual environment, you never know.
 - Required packages:
