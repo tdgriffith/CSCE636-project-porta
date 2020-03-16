@@ -1,4 +1,4 @@
-name: fastai
+name: CSCE-porta
 channels:
   - anaconda
   - pytorch
