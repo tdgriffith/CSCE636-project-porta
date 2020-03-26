@@ -24,4 +24,6 @@ I highly recommend a virtual environment, you never know.
 - Data set notes
     - I am using the [ActivityNet Data Crawler](https://github.com/activitynet/ActivityNet/tree/master/Crawler/Kinetics) to pull my own data set from Youtube in a network friendly format. 
     - This crawler pulls videos from Youtube, and converts them to a series of jpg images, which are fed to the network. Images are already processed and contained in this repo
+- Final model state_dict
+    - Download [here](https://drive.google.com/drive/folders/1euUdVgU2mKkHPt5yPUWRuAMBLhelr_Ba?usp=sharing) from Drive.
 
