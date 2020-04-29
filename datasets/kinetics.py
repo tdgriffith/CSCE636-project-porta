@@ -136,6 +136,59 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
 
     return dataset, idx_to_class
 
+def make_dataset2(root_path, annotation_path, subset, n_samples_for_each_video,
+                 sample_duration):
+    data = load_annotation_data(annotation_path)
+    video_names, annotations = get_video_names_and_annotations(data, subset)
+    class_to_idx = get_class_labels(data)
+    idx_to_class = {}
+    for name, label in class_to_idx.items():
+        idx_to_class[label] = name
+
+    dataset = []
+    for i in range(len(video_names)):
+        if i % 1000 == 0:
+            print('dataset loading [{}/{}]'.format(i, len(video_names)))
+
+        video_path = os.path.join(root_path, video_names[i])
+        if not os.path.exists(video_path):
+            continue
+
+        n_frames_file_path = os.path.join(video_path, 'n_frames')
+        n_frames = int(load_value_file(n_frames_file_path))
+        if n_frames <= 0:
+            continue
+
+        begin_t = 1
+        end_t = n_frames
+        sample = {
+            'video': video_path,
+            'segment': [begin_t, end_t],
+            'n_frames': n_frames,
+        }
+        if len(annotations) != 0:
+            sample['label'] = class_to_idx[annotations[i]['label']]
+        else:
+            sample['label'] = -1
+
+        if n_samples_for_each_video == 1:
+            sample['frame_indices'] = list(range(1, n_frames + 1))
+            dataset.append(sample)
+        else:
+            if n_samples_for_each_video > 1:
+                step = max(1,
+                           math.ceil((n_frames - 1 - sample_duration) /
+                                     (n_samples_for_each_video - 1)))
+            else:
+                step = sample_duration
+            for j in range(1, n_frames, step):
+                sample_j = copy.deepcopy(sample)
+                sample_j['frame_indices'] = list(
+                    range(j, min(n_frames + 1, j + sample_duration)))
+                dataset.append(sample_j)
+
+    return dataset, idx_to_class
+
 
 class Kinetics(data.Dataset):
     """

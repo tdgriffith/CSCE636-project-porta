@@ -1,4 +1,5 @@
 from datasets.kinetics import Kinetics
+from datasets.kinetics2 import Kinetics2
 from datasets.activitynet import ActivityNet
 from datasets.ucf101 import UCF101
 from datasets.hmdb51 import HMDB51
@@ -94,7 +95,7 @@ def get_validation_set(opt, spatial_transform, temporal_transform,
 
 
 def get_test_set(opt, spatial_transform, temporal_transform, target_transform):
-    assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51']
+    assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51','kinetics2']
     assert opt.test_subset in ['val', 'test']
 
     if opt.test_subset == 'val':
@@ -134,6 +135,16 @@ def get_test_set(opt, spatial_transform, temporal_transform, target_transform):
             sample_duration=opt.sample_duration)
     elif opt.dataset == 'hmdb51':
         test_data = HMDB51(
+            opt.video_path,
+            opt.annotation_path,
+            subset,
+            0,
+            spatial_transform,
+            temporal_transform,
+            target_transform,
+            sample_duration=opt.sample_duration)
+    elif opt.dataset == 'kinetics2':
+        test_data = Kinetics2(
             opt.video_path,
             opt.annotation_path,
             subset,

@@ -26,4 +26,9 @@ I highly recommend a virtual environment, you never know.
     - This crawler pulls videos from Youtube, and converts them to a series of jpg images, which are fed to the network. Images are already processed and contained in this repo
 - Final model state_dict
     - Download [here](https://drive.google.com/drive/folders/1euUdVgU2mKkHPt5yPUWRuAMBLhelr_Ba?usp=sharing) from Drive.
+- Notes on automated testing with test.sh file
+    - Place pretrained weights from Drive above into preWeights folder. Name the file porta.pth
+    - Place the mp4 file in the director test/test
+        - By default, the script assumes the file name is test_video1.mp4. The script will need to be adjusted at the top if this is not the case.
+    - Run the script. Resulting plots and json files are found in the test_results folder.
 
