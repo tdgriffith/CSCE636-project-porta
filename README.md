@@ -28,7 +28,7 @@ I highly recommend a virtual environment, you never know.
     - Download [here](https://drive.google.com/drive/folders/1euUdVgU2mKkHPt5yPUWRuAMBLhelr_Ba?usp=sharing) from Drive.
 - Notes on automated testing with test.sh file
     - Place pretrained weights from Drive above into preWeights folder. Name the file porta.pth
-    - Place the mp4 file in the director test/test
+    - Place the mp4 file in the directory test/test
         - By default, the script assumes the file name is test_video1.mp4. The script will need to be adjusted at the top if this is not the case.
     - Run the script. Resulting plots and json files are found in the test_results folder.
 
